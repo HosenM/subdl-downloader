@@ -142,6 +142,9 @@ function App() {
                   </li>
                   <li>Add Cover Image</li>
                   <li>Make Upload to opensubtitle.org work</li>
+                  <li>add setting icon to get api</li>
+                  <li>Get API from user profile</li>
+                  <li>find out a way to save api in browser cookies</li>
                 </ul>
               </div>
             </div>
