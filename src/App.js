@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import InputField from "./InputField";
 import "bulma/css/bulma.min.css";
 import Dropdown from "./Dropdown";
-//F5iBg5Fb06tHH-4WFMb49cT1rv-yUFpm
+
 function App() {
   const [info, setInfo] = useState({
     url: "https://api.subdl.com/api/v1/subtitles",
