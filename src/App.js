@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import InputField from "./InputField";
 import "bulma/css/bulma.min.css";
 import Dropdown from "./Dropdown";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 
 function App() {
   const [info, setInfo] = useState({
@@ -106,6 +107,7 @@ function App() {
 
   return (
     <div className="App">
+      <SpeedInsights />
       <header className="App-header">
         <div className="container">
           <h1 className="title has-text-centered mt-6">Subdl Downloader ⬇️</h1>
