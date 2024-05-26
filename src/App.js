@@ -1,12 +1,12 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import InputField from "./InputField";
 import "bulma/css/bulma.min.css";
 import Dropdown from "./Dropdown";
-
+//F5iBg5Fb06tHH-4WFMb49cT1rv-yUFpm
 function App() {
   const [info, setInfo] = useState({
     url: "https://api.subdl.com/api/v1/subtitles",
-    api: "F5iBg5Fb06tHH-4WFMb49cT1rv-yUFpm",
+    api: "",
     movie: "",
     imdbID: "",
     type: "movie",
@@ -88,14 +88,55 @@ function App() {
     { label: "Series", value: "tv" },
   ];
 
+  //Save API to state
+  const saveApiKey = () => {
+    localStorage.setItem("apiKey", info.api);
+  };
+
+  //Get Api key from browser local storage
+  useEffect(() => {
+    const storedApiKey = localStorage.getItem("apiKey");
+    if (storedApiKey) {
+      setInfo((prevInfo) => ({
+        ...prevInfo,
+        api: storedApiKey,
+      }));
+    }
+  }, []);
+
   return (
     <div className="App">
       <header className="App-header">
         <div className="container">
           <h1 className="title has-text-centered mt-6">Subdl Downloader ⬇️</h1>
+
           <div className="columns is-centered">
             <div className="column is-half">
               <div className="box">
+                <InputField
+                  lable="API Key"
+                  name="api"
+                  value={info.api}
+                  onChange={handleChange}
+                />
+
+                <div className="buttons-container has-text-centered">
+                  <div className="content is-small">
+                    <a
+                      className="button is-link"
+                      href="https://www.subdl.com/panel/api"
+                    >
+                      Get SUBDL API Key
+                    </a>
+                    <button
+                      className="button is-primary mgl-small"
+                      onClick={saveApiKey}
+                    >
+                      Save API To Browser
+                    </button>
+                  </div>
+                </div>
+
                 <InputField
                   lable="Movie Name"
                   name="movie"
@@ -159,16 +200,7 @@ function App() {
               <br />
               <div className="todo">
                 <p>TODO:</p>
-                <ul>
-                  <li style={{ textDecoration: "line-through" }}>
-                    Add download all button
-                  </li>
-                  <li>Add Cover Image</li>
-                  <li>Make Upload to opensubtitle.org work</li>
-                  <li>add setting icon to get api</li>
-                  <li>Get API from user profile</li>
-                  <li>find out a way to save api in browser cookies</li>
-                </ul>
+                <ul></ul>
               </div>
             </div>
           </div>
