@@ -6,7 +6,7 @@ import Dropdown from "./Dropdown";
 function App() {
   const [info, setInfo] = useState({
     url: "https://api.subdl.com/api/v1/subtitles",
-    api: "",
+    api: "f5ibg5fb06thh-4wfmb49ct1rv-yufpm",
     movie: "",
     imdbID: "",
     type: "movie",
