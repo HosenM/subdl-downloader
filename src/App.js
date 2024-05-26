@@ -1,6 +1,7 @@
 import { useState } from "react";
 import InputField from "./InputField";
 import "bulma/css/bulma.min.css";
+import Dropdown from "./Dropdown";
 
 function App() {
   const [info, setInfo] = useState({
@@ -13,6 +14,7 @@ function App() {
     subsPerPage: 30,
     log: "",
     subtitlesData: [],
+    season: "",
   });
 
   const getSubtitels = () => {
@@ -20,10 +22,17 @@ function App() {
       ...prevInfo,
       log: "",
     }));
+    const api_string =
+      `${info.url}?api_key=${info.api}` +
+      `&film_name=${info.movie}` +
+      `&type=${info.type}` +
+      `&languages=fa` +
+      `&imdb_id=${info.imdbID}` +
+      `&subs_per_page=30` +
+      `&season_number=${info.season}`;
 
-    fetch(
-      `${info.url}?api_key=${info.api}&film_name=${info.movie}&type=${info.type}&languages=fa&imdb_id=${info.imdbID}&subs_per_page=30`
-    )
+    console.log(api_string);
+    fetch(api_string)
       .then((response) => response.json())
       .then((data) => {
         if (!data.status) {
@@ -74,6 +83,11 @@ function App() {
     }
   };
 
+  const typeOptions = [
+    { label: "Movie", value: "movie" },
+    { label: "Series", value: "tv" },
+  ];
+
   return (
     <div className="App">
       <header className="App-header">
@@ -97,13 +111,22 @@ function App() {
                   onChange={handleChange}
                 />
 
-                <InputField
-                  lable="Type (Movie or Series)"
+                <Dropdown
+                  label="Type (Movie or Series)"
                   name="type"
                   value={info.type}
+                  options={typeOptions}
                   onChange={handleChange}
                 />
 
+                {info.type === "tv" && (
+                  <InputField
+                    lable="Season Number"
+                    name="season"
+                    value={info.season}
+                    onChange={handleChange}
+                  ></InputField>
+                )}
                 <div className="buttons is-centered">
                   <button className="button is-primary" onClick={getSubtitels}>
                     Submit
