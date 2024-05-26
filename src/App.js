@@ -140,18 +140,30 @@ function App() {
                 </div>
 
                 <InputField
+                  lable={
+                    <>
+                      IMDB ID, Recommended
+                      <a
+                        className="ml-1"
+                        href="https://www.imdb.com/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        IMDB
+                      </a>
+                    </>
+                  }
+                  name="imdbID"
+                  value={info.imdbID}
+                  onChange={handleChange}
+                />
+
+                <InputField
                   lable="Movie Name"
                   name="movie"
                   value={info.movie}
                   onChange={handleChange}
                   placeholder="Success input"
-                />
-
-                <InputField
-                  lable="IMDB ID"
-                  name="imdbID"
-                  value={info.imdbID}
-                  onChange={handleChange}
                 />
 
                 <Dropdown
