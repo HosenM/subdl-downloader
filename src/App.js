@@ -142,7 +142,7 @@ function App() {
                 <InputField
                   lable={
                     <>
-                      IMDB ID, Recommended
+                      IMDB ID, (Works Best)
                       <a
                         className="ml-1"
                         href="https://www.imdb.com/"
@@ -157,6 +157,7 @@ function App() {
                   value={info.imdbID}
                   onChange={handleChange}
                 />
+                <p className="mb-4">ex: tt1684562</p>
 
                 <InputField
                   lable="Movie Name"
